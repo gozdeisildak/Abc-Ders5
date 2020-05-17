@@ -1,0 +1,177 @@
+﻿@using Abc.MvcWebUI.Models;
+@model IEnumerable<ProductModel>
+@{
+    ViewBag.Title = "List";
+}
+    <html>
+    <head>
+        <style type="text/css">
+
+            .carModel {
+                height: 150px;
+                overflow-y: scroll;
+            }
+        </style>
+        <link rel="stylesheet" href="~/Content/jquery-ui.css">
+        <script src="~/Scripts/jquery-3.0.0.js"></script>
+        <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <script src="~/Scripts/bootstrap.js"></script>
+        <link href="~/theme/css/blog-home.css" rel="stylesheet">
+
+        <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                showButtonPanel: true
+            });
+        });
+        $(function () {
+            $("#datepicker2").datepicker({
+                showButtonPanel: true
+            });
+        });
+        $(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 1000,
+                max: 2000,
+                values: [75, 300],
+                slide: function (event, ui) {
+                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                }
+            });
+            $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+                " - $" + $("#slider-range").slider("values", 1));
+        });
+      $(function () {
+        $(document).ready(function () {
+            $(".categories").click(function () {
+                var radioValue = $("input[name='size']:checked").val();
+                var priceRange = $("#amount").val();
+                var favorite = [];
+                $.each($("input[name='model']:checked"), function () {
+                    favorite.push($(this).val());
+                });
+                var values = favorite.toString();
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/_ProductList",
+                    dataType: "html",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ radioV: radioValue, priceR: priceRange, favoriteV: values }),
+                    success:
+                        function (data) {
+                            $("#products").html(data);
+                        },
+                    error: function () {
+                        alert("hata var");
+                    }
+
+                });
+            });
+        });
+      });
+        </script>
+
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="card my-4">
+                        <h5 class="card-header">Search</h5>
+                        <div class="card-body">
+                            @using (Html.BeginForm("List", "Home"))
+                            {
+                            <form action="#" class="request-form ftco-animate">
+
+                                <div class="form-group">
+                                    <label for="" class="label">Pick-up location</label>
+                                    <input type="text" name="city1" class="form-control" placeholder="City, Airport, Station, etc" value="@TempData.Peek("city1")">
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="label">Pick-up location</label>
+                                    <input type="text" name="city2" class="form-control" placeholder="City, Airport, Station, etc" value="@TempData.Peek("city2")">
+                                </div>
+
+                                <div class="d-flex">
+                                    <div class="form-group mr-2">
+                                        <label for="" class="label">Pick-up date</label>
+                                        <input type="text" name="tarih1" class="form-control" id="datepicker" placeholder="Date" value="@TempData.Peek("tarih1")">
+                                    </div>
+                                    <div class="form-group mr-2">
+                                        <label for="" class="label">Pick-up date</label>
+                                        <input type="text" name="tarih2" class="form-control" id="datepicker2" placeholder="Date" value="@TempData.Peek("tarih2")">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="label">Pick-up time</label>
+                                    <input type="text" class="form-control" id="time_pick" placeholder="Time">
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Search Vehicle" class="btn btn-secondary">
+                                </div>
+                            </form>
+                            }
+                            </div>
+                    </div>
+
+                    <!-- Categories Widget -->
+                    <div class="card my-4">
+                        <h5 class="card-header">Categories</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>
+                                            <label><input class="categories" type="radio" name="size" value="small">  Small</label>
+                                        </li>
+                                        <li>
+                                            <label><input class="categories" type="radio" name="size" value="medium">  Medium</label>
+                                        </li>
+                                        <li>
+                                            <label><input class="categories" type="radio" name="size" value="large">  Large</label>
+                                        </li>
+                                        <li>
+                                            <label><input class="categories" type="radio" name="size" value="all" checked>  ALL</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="card-header"><label for="amount">Price range:</label></h5>
+                        <div class="card-body">
+                            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                            <div id="slider-range"></div>
+                        </div>
+                        <h5 class="card-header">Select model:</h5>
+                        <div class="carModel card-body">
+                            <div>
+                                <label><input class="categories" type="checkbox" value="BMW" name="model"> BMW</label><br />
+                                <label><input class="categories" type="checkbox" value="MERCEDES" name="model"> MERCEDES</label><br />
+                                <label><input class="categories" type="checkbox" value="FORD" name="model"> FORD</label><br />
+                                <label><input class="categories" type="checkbox" value="FIAT" name="model"> FIAT</label><br />
+                                <label><input class="categories" type="checkbox" value="FERRARI" name="model"> FERRARI</label><br />
+                                <label><input class="categories" type="checkbox" value="SUZUKI" name="model"> SUZUKI</label><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9 mb-3">
+
+                    <div id="products">
+                        @Html.Partial("_ProductList", Model)
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+    </html>
