@@ -4,9 +4,16 @@
 @{
     ViewBag.Title = "Details";
 }
+
 <div id="product-details" class="container pb-5">
     <div class="row">
-
+        @if (TempData["city1"] != null)
+        {
+            TempData.Peek("city1");
+            TempData.Peek("city2");
+            TempData.Peek("tarih1");
+            TempData.Peek("tarih2");
+        }
         <div class="col-md-6">
             <img src="/Upload/@Model.Image" class="img-fluid rounded ">
         </div>
@@ -18,7 +25,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    
+
                     @if (Model.IsApproved)
                     {
                         <span class="badge badge-primary">Stokta</span>
@@ -27,7 +34,7 @@
                     {
                         <span class="badge badge-danger">Stokta Yok</span>
                     }
-                    
+
                     <span class="product-number">#2365656</span>
                 </div>
             </div>
@@ -60,13 +67,21 @@
             </div>
             <div class="row mt-2">
                 <div class="col-md-12">
-                    
-                    @using (Html.BeginForm("AddToCart","Cart"))
+
+                    @using (Html.BeginForm("Reservation", "Checkout"))
                     {
-                        @Html.HiddenFor(i=>i.Id)
+                        @Html.HiddenFor(i => i.Id)
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            Reservation
+                        </button>
+                    }
+                    @using (Html.BeginForm("GotoPayment", "Checkout"))
+                    {
+                        @Html.HiddenFor(i => i.Id)
                         <button type="submit" class="btn btn-success">
                             <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                            Add To Cart
+                            Go to Checkout
                         </button>
                     }
 

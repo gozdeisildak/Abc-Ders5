@@ -27,6 +27,10 @@ namespace Abc.MvcWebUI.Controllers
       
         public ActionResult _ProductList(string radioV, string priceR, string favoriteV)
         {
+            TempData.Peek("city1");
+            TempData.Peek("city2");
+            TempData.Peek("tarih1");
+            TempData.Peek("tarih2");
             var query = TempData.Peek("query") as IQueryable<Product>;
 
             string[] brands = favoriteV.Split(',');
@@ -63,9 +67,9 @@ namespace Abc.MvcWebUI.Controllers
         public ActionResult List(string city1, string city2,string tarih1, string tarih2) 
         {
             TempData["city1"] = city1;
+            TempData["city2"] = city2;
             TempData["tarih1"] = tarih1;
-            TempData["tarih2"] = tarih2;
-
+            TempData["tarih2"] = tarih2;          
             var queryContext = _context.Products.Where(i => i.Category.Name == city1).AsQueryable();
 
             TempData["query"] = queryContext;

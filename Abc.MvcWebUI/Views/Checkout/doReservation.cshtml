@@ -1,0 +1,94 @@
+﻿@model Abc.MvcWebUI.Models.Credit
+@{
+    ViewBag.Title = "doReservation";
+}
+
+<h2>doReservation</h2>
+
+<div class="container pb-5">
+
+    <h2>Credit Card Information</h2>
+    <hr />
+
+
+    @using (Html.BeginForm("PayReserve", "Checkout"))
+    {
+        <form action="#" class="request-form ftco-animate">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Card owner's Name</label>
+                    <input type="text" name="CardName" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Card No</label>
+                    <input type="text" name="CardNo" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Card Date</label>
+                    <input type="text" name="CardTarihi" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">CV Number</label>
+                    <input type="text" name="CVNo" class="form-control">
+                </div>             
+                <div class="form-group">
+                    <input type="submit" value="PAY" class="btn btn-warning">
+                    @*@Html.ActionLink("Back to Reservation", "DeleteReservation", Convert.ToInt32(TempData["id"]), new { @class = "btn btn-warning" })*@
+                </div>
+
+
+            </div>
+
+        </form>
+
+    }
+
+
+    @*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.CartName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CartName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CartName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CardNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CardNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CardNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CardTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CardTarihi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CardTarihi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CVNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CVNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CVNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="PayReserve" class="btn btn-primary" />
+                    @Html.ActionLink("PAY", "PayReserve", Model, new { @class = "btn btn-warning" })
+                </div>
+            </div>
+        </div>
+    }*@
+</div>

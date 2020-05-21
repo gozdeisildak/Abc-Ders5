@@ -419,12 +419,18 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Entity\Category.cs" />
+    <Compile Include="Entity\CreditCart.cs" />
     <Compile Include="Entity\DataContext.cs" />
     <Compile Include="Entity\DataInitializer.cs" />
+    <Compile Include="Entity\EnumOrderState.cs" />
+    <Compile Include="Entity\Order.cs" />
     <Compile Include="Entity\Product.cs" />
+    <Compile Include="Entity\Reservation.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -433,10 +439,15 @@
     <Compile Include="Identity\IdentityDataContext.cs" />
     <Compile Include="Identity\IdentityInitializer.cs" />
     <Compile Include="Identity\MembershipTools.cs" />
+    <Compile Include="Models\AdminOrder.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Credit.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\OrderDetailModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\Register.cs" />
+    <Compile Include="Models\RentDetails.cs" />
+    <Compile Include="Models\UserOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -482,6 +493,19 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Cart\Completed.cshtml" />
+    <Content Include="Views\Cart\AddDate.cshtml" />
+    <Content Include="Views\Checkout\Reservation.cshtml" />
+    <Content Include="Views\Checkout\GotoPayment.cshtml" />
+    <Content Include="Views\Checkout\PayReserve.cshtml" />
+    <Content Include="Views\Checkout\PayRent.cshtml" />
+    <Content Include="Views\Checkout\doReservation.cshtml" />
+    <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\Reserv.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -58,5 +58,42 @@ namespace Abc.MvcWebUI.Controllers
         {
             return PartialView(GetCart());
         }
+        [Authorize]
+        public ActionResult Checkout()
+        {
+            return View(new RentDetails());
+        }
+        [HttpPost]
+        public ActionResult Checkout(RentDetails entity)
+        {
+            var cart = GetCart();
+            if (cart.CartLines.Count==0)
+            {
+                ModelState.AddModelError("NoCar","There is no Car in your cart");
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    //SİPARİŞİN VERİTABANINA KAYIT EDİLİDĞİ YERR!
+                   // SaveOrder(cart,entity);
+                    cart.Clear();
+                    return View("Completed");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            return View(new RentDetails());
+        }
     }
+    //private void SaveOrder(Cart cart, RentDetails entity)
+    //{
+    //    var order = new Order();
+    //    order.OrderNumber = "A"+(new Random()).Next(111111,999999).ToString();
+    //    order.Total = cart.Total();
+    //    order.OrderDate = DateTime.Now;
+        
+    //}
 }

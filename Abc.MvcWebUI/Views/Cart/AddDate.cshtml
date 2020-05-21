@@ -1,0 +1,98 @@
+﻿@model Abc.MvcWebUI.Models.CartLine
+    @{
+        ViewBag.Title = "AddDate";
+    }
+    <html>
+    <head>
+        <style type="text/css">
+
+            .carModel {
+                height: 150px;
+                overflow-y: scroll;
+            }
+        </style>
+        <link rel="stylesheet" href="~/Content/jquery-ui.css">
+        <script src="~/Scripts/jquery-3.0.0.js"></script>
+        <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <script src="~/Scripts/bootstrap.js"></script>
+        <link href="~/theme/css/blog-home.css" rel="stylesheet">
+
+        <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                showButtonPanel: true
+            });
+        });
+        $(function () {
+            $("#datepicker2").datepicker({
+                showButtonPanel: true
+            });
+        });
+        $(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 1000,
+                max: 2000,
+                values: [75, 300],
+                slide: function (event, ui) {
+                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                }
+            });
+            $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+                " - $" + $("#slider-range").slider("values", 1));
+        });
+      $(function () {
+        $(document).ready(function () {
+            $(".categories").click(function () {
+                var radioValue = $("input[name='size']:checked").val();
+                var priceRange = $("#amount").val();
+                var favorite = [];
+                $.each($("input[name='model']:checked"), function () {
+                    favorite.push($(this).val());
+                });
+                var values = favorite.toString();
+                $.ajax({
+                    type: "POST",
+                    url: '@Html.Action("List", "Home")',
+                    dataType: "html",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ radioV: radioValue, priceR: priceRange, favoriteV: values }),
+                    success:
+                        function (data) { }
+
+                });
+            });
+        });
+      });
+        </script>
+
+    </head>
+
+    <h2>AddDate</h2>
+
+
+
+    @Html.BeginForm()
+    {
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Pick-up Date</label>
+        <div class="col-sm-8">
+           @* @Html.TextBoxFor(x => x.PickupTime, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", type = "datetime-local" })*@
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Leaving Date</label>
+        <div class="col-sm-8">
+            @*@Html.TextBoxFor(x => x.LeaveTime, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", type = "datetime-local" })*@
+        </div>
+    </div>
+    }
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

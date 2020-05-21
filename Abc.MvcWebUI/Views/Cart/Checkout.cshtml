@@ -1,0 +1,73 @@
+﻿@model Abc.MvcWebUI.Models.RentDetails
+@{
+    ViewBag.Title = "Checkout";
+}
+<style>
+    .field-valitadion-error{color:#ff0000;}
+    .field-valitadion-valid{display: none;}
+    .input-valitadion-error{border:1px solid #f00; background-color:#fee}
+    .validation-summary-error { color:#f00;}
+    .validation-summary-valid{display:none;}
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2> Information of Car You Rented</h2>
+            <hr />
+            <p>Please fill your information</p>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary()
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">the name of the person who will receive the car</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(x => x.DeliverName, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Identity Number of the person who will receive the car</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(x => x.TcNo, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Pick-up Date</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(x => x.PickUpTime, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", type = "datetime-local" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Leaving Date</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(x => x.LeaveTime, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", type = "datetime-local" })
+                    </div>
+                </div>              
+                <div class="form-group">
+                    <label for="exampleFormControlInput1"></label>
+                    <div class="col-sm-8">
+                        <button type="submit" class="btn btn-primary"></button>
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                <label for="exampleFormControlSelect1">City select</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>İstanbul @Html.DropDownListFor(x=>x.City, new { @class = "form-control" })</option>
+                    <option>Bursa</option>
+                    <option>İzmir</option>
+                    <option>Ankara</option>
+                </select>
+            </div>*@
+            }
+        </div>
+    </div>
+</div>>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
