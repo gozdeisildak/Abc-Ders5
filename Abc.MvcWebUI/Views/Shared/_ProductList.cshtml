@@ -21,6 +21,13 @@
     <link href="~/theme/css/blog-home.css" rel="stylesheet">
 </head>
 <body>
+    @if (TempData["city1"] != null)
+    {
+        TempData.Peek("city1");
+        TempData.Peek("city2");
+        TempData.Peek("tarih1");
+        TempData.Peek("tarih2");
+    }
     <div>
         @if (Model.Count() == 0)
         {
@@ -59,11 +66,21 @@
                     <i class="fa fa-try" aria-hidden="true"></i>
                     @urun.DaysPrice
                 </small>
+
                 <a href="/Home/Details/@urun.Id" class="btn btn-default btn-sm float-right">
                     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
                     Ürünü incele
                 </a>
+                <a href="/Checkout/Reservation/@urun.Id" class="btn btn-warning btn-sm float-right">
+                    Reservation
+                </a>
+                <a href="/Checkout/GotoPayment/@urun.Id" class="btn btn-success btn-sm float-right">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    Go to Checkout
+                </a>
+
             </div>
+
         </div>
         <br />
     }
@@ -71,4 +88,3 @@
 
 </body>
 </html>
-  
