@@ -186,6 +186,13 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Global.asax" />
+    <Content Include="jon\.gitignore" />
+    <Content Include="jon\dist\jquery.payform.js" />
+    <Content Include="jon\dist\jquery.payform.min.js" />
+    <Content Include="jon\dist\payform.js" />
+    <Content Include="jon\dist\payform.min.js" />
+    <Content Include="jon\index.html" />
+    <Content Include="jon\jquery.html" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap-dtpicker.min.css" />
@@ -288,6 +295,27 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="jon\.npmignore" />
+    <Content Include="jon\.travis.yml" />
+    <Content Include="jon\bower.json" />
+    <Content Include="jon\CARDRULES.md" />
+    <Content Include="jon\CHANGELOG" />
+    <Content Include="jon\CONTRIBUTING.md" />
+    <Content Include="jon\LICENSE" />
+    <Content Include="jon\Makefile" />
+    <Content Include="jon\package-lock.json" />
+    <Content Include="jon\package.json" />
+    <Content Include="jon\README.md" />
+    <Content Include="jon\src\jquery.payform.coffee" />
+    <Content Include="jon\src\payform.coffee" />
+    <Content Include="jon\test\cardType_spec.coffee" />
+    <Content Include="jon\test\formatCardExpiry_spec.coffee" />
+    <Content Include="jon\test\formatCardNumber_spec.coffee" />
+    <Content Include="jon\test\mocha.opts" />
+    <Content Include="jon\test\parseCardExpiry_spec.coffee" />
+    <Content Include="jon\test\validateCardCVC_spec.coffee" />
+    <Content Include="jon\test\validateCardExpiry_spec.coffee" />
+    <Content Include="jon\test\validateCardNumber_spec.coffee" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -421,13 +449,17 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Entity\Category.cs" />
+    <Compile Include="Entity\CreditCart.cs" />
     <Compile Include="Entity\DataContext.cs" />
     <Compile Include="Entity\DataInitializer.cs" />
+    <Compile Include="Entity\EnumOrderState.cs" />
     <Compile Include="Entity\Order.cs" />
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\Reservation.cs" />
+    <Compile Include="Entity\ViewProduct.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -436,11 +468,15 @@
     <Compile Include="Identity\IdentityDataContext.cs" />
     <Compile Include="Identity\IdentityInitializer.cs" />
     <Compile Include="Identity\MembershipTools.cs" />
+    <Compile Include="Models\AdminOrder.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Credit.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\OrderDetailModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\RentDetails.cs" />
+    <Compile Include="Models\UserOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -490,8 +526,16 @@
     <Content Include="Views\Cart\Completed.cshtml" />
     <Content Include="Views\Cart\AddDate.cshtml" />
     <Content Include="Views\Checkout\Reservation.cshtml" />
-    <Content Include="Views\Checkout\doReservation.cshtml" />
     <Content Include="Views\Checkout\GotoPayment.cshtml" />
+    <Content Include="Views\Checkout\PayReserve.cshtml" />
+    <Content Include="Views\Checkout\PayRent.cshtml" />
+    <Content Include="Views\Checkout\doReservation.cshtml" />
+    <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\Reserv.cshtml" />
+    <Content Include="Views\Cart\Cartdeneme.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
