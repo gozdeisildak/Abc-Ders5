@@ -1,91 +1,59 @@
-﻿@model Abc.MvcWebUI.Models.RentDetails
+﻿
 @{
     ViewBag.Title = "GotoPayment";
 }
-<html>
-<head>
-    <link rel="stylesheet" href="~/Content/jquery-ui.css">
-    <script src="~/Scripts/jquery-3.5.1.js"></script>
-    <script src="~/Scripts/jquery-ui.js"></script>
 
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <script src="~/Scripts/bootstrap.js"></script>
+<h2>GotoPayment</h2>
 
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Reservation</h2>
-                <br />
-                <br />
-                <h2> Information of Car You Rented</h2>
-                <hr />
-                <p>  Please fill your information! </p>
-                <br />
-                @using (Html.BeginForm("GotoPayment", "Checkout"))
-                {
-                    @Html.AntiForgeryToken()
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2> Information of Car You Rented</h2>
+            <hr />
+            <p>Please fill your information </p>
+            @using (Html.BeginForm("GotoPayment", "Checkout"))
+            {
+                <form action="#" class="request-form ftco-animate">
                     <div class="form-horizontal">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
-                            @Html.LabelFor(model => model.DeliverName, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.DeliverName, new { htmlAttributes = new { @class = "form-control", @Value = @User.Identity.Name.ToString() } })
-                                @Html.ValidationMessageFor(model => model.DeliverName, "", new { @class = "text-danger" })
-                            </div>
+                            <label for="exampleFormControlInput1">the name of the person who will receive the car</label>
+                            <input type="text" name="DeliverName" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.TcNo, htmlAttributes: new { @class = "control-label col-md-5" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.TcNo, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.TcNo, "", new { @class = "text-danger" })
-                            </div>
-                        </div>,
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.PickCity, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.PickCity, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = @TempData.Peek("city").ToString() } })
-                                @Html.ValidationMessageFor(model => model.PickCity, "", new { @class = "text-danger" })
+                            <label for="exampleFormControlInput1">Identity Number of the person who will receive the car</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="TcNo" class="form-control">
                             </div>
                         </div>
-
                         <div class="form-group">
-                            @Html.LabelFor(model => model.LeaveCity, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.LeaveCity, new { htmlAttributes = new { @class = "form-control", @Value = @TempData.Peek("city2").ToString() } })
-                                @Html.ValidationMessageFor(model => model.LeaveCity, "", new { @class = "text-danger" })
-                            </div>
+                            <label for="" class="label">Pick-up location</label>
+                            <input type="text" name="city1" class="form-control" placeholder="City, Airport, Station, etc" value="@TempData.Peek("city1")">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="label">Pick-up location</label>
+                            <input type="text" name="city2" class="form-control" placeholder="City, Airport, Station, etc" value="@TempData.Peek("city2")">
                         </div>
 
-                        <div class="form-group">
-                            <label for="" class="label">Pick-up date</label>
-                            <div class="col-md-10">
-                                <input type="text" name="tarih1" class="form-control" id="datepicker" placeholder="Date" value="@TempData.Peek("tarih1")" readonly>
+                        <div class="d-flex">
+                            <div class="form-group mr-2">
+                                <label for="" class="label">Pick-up date</label>
+                                <input type="text" name="tarih1" class="form-control" id="datepicker" placeholder="Date" value="@TempData.Peek("tarih1")">
                             </div>
                             <div class="form-group mr-2">
-                                <label for="" class="label">Leaving date</label>
-                                <input type="text" name="tarih2" class="form-control" id="datepicker2" placeholder="Date" value="@TempData.Peek("tarih2")" readonly>
+                                <label for="" class="label">Pick-up date</label>
+                                <input type="text" name="tarih2" class="form-control" id="datepicker2" placeholder="Date" value="@TempData.Peek("tarih2")">
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Do Reservation" class="btn btn-primary" />
-                            </div>
+                            <input type="submit" value="Payment" class="btn btn-warning">
                         </div>
-                    </div>
-                }
-            </div>
-        </div>
-        <script src="~/Scripts/jquery-3.5.1.min.js"></script>
-        <script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-</body>
 
-</html>
+
+                    </div>
+
+                </form>
+
+            }
+        </div>
+    </div>

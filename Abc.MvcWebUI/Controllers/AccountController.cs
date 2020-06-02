@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using Abc.MvcWebUI.Entity;
 using Abc.MvcWebUI.Identity;
 using Abc.MvcWebUI.Models;
 using Microsoft.AspNet.Identity;
@@ -18,7 +17,7 @@ namespace Abc.MvcWebUI.Controllers
     {
         private UserManager<ApplicationUser> UserManager;
         private RoleManager<ApplicationRole> RoleManager;
-        private DataContext db = new DataContext();
+
         public AccountController()
         {
             var userStore = new UserStore<ApplicationUser>(new IdentityDataContext());
@@ -28,105 +27,10 @@ namespace Abc.MvcWebUI.Controllers
             RoleManager = new RoleManager<ApplicationRole>(roleStore);
 
         }
-        public ActionResult Index()  //// Sayfada kullanıcının 
-        {
-            var username = User.Identity.Name;
-            var reservation = db.Reservations.Where(i => i.DeliverName == username).Select(i => new UserOrder()
-            {
-
-                Id = i.Id,
-                OrderNumber = i.OrderNumber,
-                OrderDate = i.OrderDate,
-                OrderState = i.OrderState,
-                Total = i.Total,
-                PickCity = i.PickCity,
-                LeaveCity = i.LeaveCity,
-                PickUpTime = i.PickUpTime,
-                LeaveTime = i.LeaveTime,
-                TransactionName = "Reservation"
-            }).OrderByDescending(i=>i.OrderDate).ToList();
-            var order= db.Orders.Where(i => i.DeliverName == username).Select(i => new UserOrder()
-            {
-
-                Id = i.Id,
-                OrderNumber = i.OrderNumber,
-                OrderDate = i.OrderDate,
-                OrderState = i.OrderState,
-                Total = i.Total,
-                PickCity = i.PickCity,
-                LeaveCity = i.LeaveCity,
-                PickUpTime = i.PickUpTime,
-                LeaveTime = i.LeaveTime,
-                TransactionName = "Rent"
-            }).OrderByDescending(i => i.OrderDate).ToList();
-            foreach (var item in order)
-            {
-                reservation.Add(item);
-            }
-            return View(reservation);
-        }
-        public ActionResult Details(int id,string transaction)
-        {
-            if (transaction == "Rent")
-            {
-                var entity = db.Orders.Where(i => i.Id == id)
-                               .Select(i => new OrderDetailModel()
-                               {
-                                   OrderId = i.Id,
-                                   OrderNumber = i.OrderNumber,
-                                   Total = i.Total,
-                                   OrderDate = i.OrderDate,
-                                   OrderState = i.OrderState,
-                                   PickCity = i.PickCity,
-                                   LeaveCity = i.LeaveCity,
-                                   PickUpTime = i.PickUpTime,
-                                   LeaveTime = i.LeaveTime,
-                                   DeliverName = i.DeliverName,
-                                   Tcno = i.Tcno,
-                                   OrderLineDetails = i.OrderLines.Select(a => new OrderLineDetailModel()
-                                   {
-                                       ProductId = a.ProductId,
-                                       ProductName = a.Product.Model,
-                                       Image = a.Product.Image,
-                                       Price = a.Price
-                                   }).ToList()
-                               }).FirstOrDefault();
-                return View(entity);
-            }
-            else if(transaction == "Reservation")
-            {
-                var entity = db.Reservations.Where(i => i.Id == id)
-                               .Select(i => new OrderDetailModel()
-                               {
-                                   OrderId = i.Id,
-                                   OrderNumber = i.OrderNumber,
-                                   Total = i.Total,
-                                   OrderDate = i.OrderDate,
-                                   OrderState = i.OrderState,
-                                   PickCity = i.PickCity,
-                                   LeaveCity = i.LeaveCity,
-                                   PickUpTime = i.PickUpTime,
-                                   LeaveTime = i.LeaveTime,
-                                   DeliverName = i.DeliverName,
-                                   Tcno = i.Tcno,
-                                   OrderLineDetails = i.ReservationLines.Select(a => new OrderLineDetailModel()
-                                   {
-                                       ProductId = a.ProductId,
-                                       ProductName = a.Product.Model,
-                                       Image = a.Product.Image,
-                                       Price = a.Price
-                                   }).ToList()
-                               }).FirstOrDefault();
-                return View(entity);
-            }
-            return View();
-        }
 
         // GET: Account
         public ActionResult Register()
-
         {
-
             return View();
         }
 

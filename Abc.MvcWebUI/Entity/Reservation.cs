@@ -19,8 +19,6 @@ namespace Abc.MvcWebUI.Entity
         public string LeaveCity { get; set; }
         public DateTime PickUpTime { get; set; }
         public DateTime LeaveTime { get; set; }
-        public EnumOrderState OrderState { get; set; }
-        public bool Confirm { get; set; }
         public virtual List<ReservationLine> ReservationLines { get; set; }
     }
     public class ReservationLine

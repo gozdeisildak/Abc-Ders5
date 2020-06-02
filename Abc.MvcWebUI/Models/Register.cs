@@ -28,13 +28,11 @@ namespace Abc.MvcWebUI.Models
 
         [Required]
         [DisplayName("Şifre")]
-        [MinLength(6)]
         public string Password { get; set; }
 
         [Required]
         [DisplayName("Şifre Tekrar")]
         [Compare("Password",ErrorMessage = "Şifreleriniz uyuşmuyor.")]
-        [MinLength(6)]
         public string RePassword { get; set; }
     }
 }

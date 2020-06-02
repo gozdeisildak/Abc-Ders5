@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
 using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Abc.MvcWebUI.Entity;
 using Abc.MvcWebUI.Models;
+
 namespace Abc.MvcWebUI.Controllers
 {
     public class HomeController : Controller
@@ -61,38 +61,21 @@ namespace Abc.MvcWebUI.Controllers
             return PartialView(products);
 
         }
-
-
-        [System.Data.Entity.DbFunction("Edm", "TruncateTime")]
-        public ActionResult List(string city, string city2,string tarih1, string tarih2) 
+     
+        
+      
+        public ActionResult List(string city1, string city2,string tarih1, string tarih2) 
         {
-            // var queryContext = _context.Products.Where(i => i.Category.Name == city).AsQueryable();
-
-            TempData["city"] = city;
+            TempData["city1"] = city1;
             TempData["city2"] = city2;
             TempData["tarih1"] = tarih1;
-            TempData["tarih2"] = tarih2;
+            TempData["tarih2"] = tarih2;          
+            var queryContext = _context.Products.Where(i => i.Category.Name == city1).AsQueryable();
 
-            DateTime dateTarih1 = Convert.ToDateTime(tarih1);
-            DateTime dateTarih2 = Convert.ToDateTime(tarih2);
-
-            var queryContext =
-    _context.Orderlines
-                .Where(i => !((DbFunctions.TruncateTime(i.Order.PickUpTime) < dateTarih1 && DbFunctions.TruncateTime(i.Order.LeaveTime) < dateTarih2) || (DbFunctions.TruncateTime(i.Order.PickUpTime) > dateTarih1 && DbFunctions.TruncateTime(i.Order.LeaveTime) > dateTarih2)))
-                .Select(x => x.ProductId)
-        .Union(_context.ReservationLines
-                .Where(i => !((DbFunctions.TruncateTime(i.Reservation.PickUpTime) < dateTarih1 && DbFunctions.TruncateTime(i.Reservation.LeaveTime) < dateTarih2) || (DbFunctions.TruncateTime(i.Reservation.PickUpTime) > dateTarih1 && DbFunctions.TruncateTime(i.Reservation.LeaveTime) > dateTarih2)))
-                .Select(x => x.ProductId));
-
-            List<String> bads = queryContext.ToList().ConvertAll<string>(x => x.ToString());
-
-
-            var Carquery = _context.Products.Where(i => i.Category.Name == city).Where(i => !(bads.Any(term => i.Id.ToString().Contains(term)))).AsQueryable();
-
-            TempData["query"] = Carquery;
+            TempData["query"] = queryContext;
             
 
-            var products = Carquery.Select(i => new ProductModel()
+            var products = queryContext.Select(i => new ProductModel()
             {
                 Id = i.Id,
                 Model = i.Model.Length > 50 ? i.Model.Substring(0, 47) + "..." : i.Model,
