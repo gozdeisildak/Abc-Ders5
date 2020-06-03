@@ -50,6 +50,7 @@ namespace Abc.MvcWebUI.Controllers
 
             return cart;
         }
+<<<<<<< HEAD
 
         public ActionResult doReservation(string DeliverName, string TcNo, string city1, string city2, string tarih1, string tarih2)
         {
@@ -61,6 +62,23 @@ namespace Abc.MvcWebUI.Controllers
             entitiy.LeaveCity = city2;
             entitiy.PickUpTime = Convert.ToDateTime(tarih1);
             entitiy.LeaveTime = Convert.ToDateTime(tarih2);
+=======
+      
+        public ActionResult doReservation(RentDetails rentCar)
+        {
+            TempData.Keep();
+            //string DeliverName, string TcNo, string city1, string city2, string tarih1, string tarih2
+
+            //var entitiy = new RentDetails();
+            //entitiy.DeliverName = DeliverName;
+            //entitiy.TcNo = TcNo;
+            //entitiy.PickCity = city1;
+            //entitiy.LeaveCity = city2;
+            //entitiy.PickUpTime = Convert.ToDateTime(tarih1);
+            // entitiy.LeaveTime = Convert.ToDateTime(tarih2);
+            rentCar.PickUpTime = Convert.ToDateTime(TempData.Peek("tarih1"));
+            rentCar.LeaveTime = Convert.ToDateTime(TempData.Peek("tarih2"));
+>>>>>>> AdminChanges
             var cart = GetCart();
             if (cart.CartLines.Count == 0)
             {
@@ -69,7 +87,11 @@ namespace Abc.MvcWebUI.Controllers
             else
             {
                 //SİPARİŞİN VERİTABANINA KAYIT EDİLİDĞİ YERR!
+<<<<<<< HEAD
                 SaveReservation(cart, entitiy);
+=======
+                SaveReservation(cart, rentCar);
+>>>>>>> AdminChanges
                 cart.Clear();
                
             }
@@ -83,6 +105,7 @@ namespace Abc.MvcWebUI.Controllers
             return View();
         }
         [HttpPost]
+<<<<<<< HEAD
         public ActionResult GotoPayment(string DeliverName, string TcNo, string city1, string city2, string tarih1, string tarih2)
         {
             var entitiy = new RentDetails();
@@ -92,6 +115,12 @@ namespace Abc.MvcWebUI.Controllers
             entitiy.LeaveCity = city2;
             entitiy.PickUpTime = Convert.ToDateTime(tarih1);
             entitiy.LeaveTime = Convert.ToDateTime(tarih2);
+=======
+        public ActionResult GotoPayment(RentDetails rentCar)
+        {
+            rentCar.PickUpTime = Convert.ToDateTime(TempData.Peek("tarih1"));
+            rentCar.LeaveTime = Convert.ToDateTime(TempData.Peek("tarih2"));
+>>>>>>> AdminChanges
             var cart = GetCart();
             if (cart.CartLines.Count == 0)
             {
@@ -101,7 +130,11 @@ namespace Abc.MvcWebUI.Controllers
             {
 
                 //SİPARİŞİN VERİTABANINA KAYIT EDİLİDĞİ YERR!
+<<<<<<< HEAD
                 SaveRent(cart, entitiy);
+=======
+                SaveRent(cart, rentCar);
+>>>>>>> AdminChanges
                 cart.Clear();
                 return RedirectToAction("PayRent");
 
