@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abc.MvcWebUI", "Abc.MvcWebUI\Abc.MvcWebUI.csproj", "{9EE03D93-ED66-41ED-9AD0-A8F7C28854BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rent.Web.Api", "Rent.Web.Api\Rent.Web.Api.csproj", "{D51A00BB-A80B-453C-870B-F45590873D62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{9EE03D93-ED66-41ED-9AD0-A8F7C28854BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EE03D93-ED66-41ED-9AD0-A8F7C28854BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EE03D93-ED66-41ED-9AD0-A8F7C28854BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D51A00BB-A80B-453C-870B-F45590873D62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51A00BB-A80B-453C-870B-F45590873D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D51A00BB-A80B-453C-870B-F45590873D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51A00BB-A80B-453C-870B-F45590873D62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

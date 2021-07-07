@@ -26,22 +26,13 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    @if (Model.IsApproved)
-                    {
-                        <span class="badge badge-primary">Stokta</span>
-                    }
-                    else
-                    {
-                        <span class="badge badge-danger">Stokta Yok</span>
-                    }
-
                     <span class="product-number">#2365656</span>
                 </div>
             </div>
             <div class="row mt-2">
                 <div class="col-md-12">
                     <div id="Description" class="readmore">
-                        @Model.ModelYears
+                        Model year : @Model.ModelYears
                     </div>
                 </div>
             </div>
@@ -54,11 +45,7 @@
                     <i class="fa fa-star-half-o" aria-hidden="true"></i>
                     <span class="badge badge-success">53</span>
                 </div>
-                <div id="write-review" class="col-md-4">
-                    <a href="#">
-                        Write a review
-                    </a>
-                </div>
+             
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
@@ -105,7 +92,28 @@
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-Description" role="tabpanel" aria-labelledby="pills-Description-tab">
-                        <p>Consequat occaecat ullamco amet non eiusmod nostrud dolore irure incididunt est duis anim sunt officia. Fugiat velit proident aliquip nisi incididunt nostrud exercitation proident est nisi. Irure magna elit commodo anim ex veniam culpa eiusmod id nostrud sit cupidatat in veniam ad. Eiusmod consequat eu adipisicing minim anim aliquip cupidatat culpa excepteur quis. Occaecat sit eu exercitation irure Lorem incididunt nostrud.</p>
+                        <div id="Car's Properties" class="readmore">
+                            <table style="width:100%">
+                               
+                                <tr>
+                                    <td><b>Class:</b>  @Model.Class</td>
+                                    <td><b>Luggage Volume:</b> @Model.LuggageVolume</td>
+                                    <td><b>Model Year:</b> @Model.ModelYears</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Horse Power:</b>  @Model.HorsePower</td>
+                                    <td><b>Type:</b> @Model.Types</td>
+                                    <td><b>How many people:</b> @Model.HowmanyPeople</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Have Clima:</b> @Model.HaveKlima</td>
+                                    <td><b>Size:</b> @Model.Size</td>
+                                    <td><b>Brand:</b> @Model.Brand</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                 
                     </div>
                     <div class="tab-pane fade" id="pills-payment" role="tabpanel" aria-labelledby="pills-payment-tab">
                         <p>Ad pariatur nostrud pariatur exercitation ipsum ipsum culpa mollit commodo mollit ex. Aute sunt incididunt amet commodo est sint nisi deserunt pariatur do. Aliquip ex eiusmod voluptate exercitation cillum id incididunt elit sunt. Qui minim sit magna Lorem id et dolore velit Lorem amet exercitation duis deserunt. Anim id labore elit adipisicing ut in id occaecat pariatur ut ullamco ea tempor duis.</p>
